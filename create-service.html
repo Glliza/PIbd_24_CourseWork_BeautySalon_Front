@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить услугу - Салон "Вы ужасны"</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="salon-header">
+        <div class="logo">
+            <i class="fas fa-spa"></i>
+            <span>Салон "Вы ужасны"</span>
+        </div>
+        <div class="user-info">
+            <span class="user-name">Администратор</span>
+            <span class="user-role">Персонал</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-plus-circle"></i>
+                Добавить новую услугу
+            </h1>
+            <a href="services.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Назад к списку
+            </a>
+        </div>
+
+        <div class="form-container">
+            <form id="createServiceForm">
+                <!-- Название услуги -->
+                <div class="form-group">
+                    <label for="serviceName" class="form-label">Название услуги*</label>
+                    <input type="text" id="serviceName" class="form-control" required>
+                </div>
+
+                <!-- Цена -->
+                <div class="form-group">
+                    <label for="servicePrice" class="form-label">Цена (₽)*</label>
+                    <input type="number" id="servicePrice" class="form-control" min="0" step="100" required>
+                </div>
+
+                <!-- Длительность -->
+                <div class="form-group">
+                    <label for="serviceDuration" class="form-label">Длительность*</label>
+                    <select id="serviceDuration" class="form-control" required>
+                        <option value="">Выберите длительность</option>
+                        <option value="30 мин">30 минут</option>
+                        <option value="1 ч">1 час</option>
+                        <option value="1.5 ч">1.5 часа</option>
+                        <option value="2 ч">2 часа</option>
+                        <option value="3 ч">3 часа</option>
+                    </select>
+                </div>
+
+                <!-- Описание -->
+                <div class="form-group">
+                    <label for="serviceDescription" class="form-label">Описание услуги*</label>
+                    <textarea id="serviceDescription" class="form-control" rows="5" required></textarea>
+                </div>
+
+                <!-- Категория -->
+                <div class="form-group">
+                    <label for="serviceCategory" class="form-label">Категория*</label>
+                    <select id="serviceCategory" class="form-control" required>
+                        <option value="">Выберите категорию</option>
+                        <option value="Парикмахерские услуги">Парикмахерские услуги</option>
+                        <option value="Ногтевой сервис">Ногтевой сервис</option>
+                        <option value="Макияж">Макияж</option>
+                        <option value="SPA-уход">SPA-уход</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+                </div>
+
+                <!-- Кнопки формы -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='services.html'">
+                        <i class="fas fa-times"></i>
+                        Отмена
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Сохранить услугу
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="salon-footer">
+        <div class="footer-content">
+            <div class="copyright">
+                © 2023 Салон красоты "Вы ужасны". Все права защищены.
+            </div>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-phone-alt"></i> Контакты</a>
+                <a href="#"><i class="fas fa-calendar-alt"></i> Запись</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Адрес</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('createServiceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const serviceName = document.getElementById('serviceName').value;
+            const servicePrice = document.getElementById('servicePrice').value;
+            const serviceDuration = document.getElementById('serviceDuration').value;
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const serviceCategory = document.getElementById('serviceCategory').value;
+            
+            if (!serviceName || !servicePrice || !serviceDuration || !serviceDescription || !serviceCategory) {
+                alert('Пожалуйста, заполните все обязательные поля (помечены *)');
+                return;
+            }
+            
+            // Здесь будет отправка данных на сервер
+            console.log('Создание услуги:', {
+                name: serviceName,
+                price: servicePrice,
+                duration: serviceDuration,
+                description: serviceDescription,
+                category: serviceCategory
+            });
+            
+            // После успешного создания перенаправляем на список услуг
+            alert('Услуга успешно добавлена!');
+            window.location.href = 'services.html';
+        });
+    </script>
+</body>
+</html>
